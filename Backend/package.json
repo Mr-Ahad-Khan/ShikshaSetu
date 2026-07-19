@@ -1,0 +1,20 @@
+{
+  "name": "blinkit-backend",
+  "version": "1.0.0",
+  "private": true,
+  "main": "Server.js",
+  "scripts": {
+    "start": "node Server.js",
+    "dev": "node --watch Server.js",
+    "check": "node --check Server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^8.19.1"
+  },
+  "overrides": {
+    "uuid": "^11.1.1"
+  }
+}

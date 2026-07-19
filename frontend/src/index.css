@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #FBFBFA;
+  color: #1E2022;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "cv11";
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(74, 107, 93, 0.18);
+  color: #1E2022;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #E1EAE5;
+  border-radius: 999px;
+  border: 2px solid #FBFBFA;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C8D6CF;
+}
+
+@layer components {
+  .editorial-title {
+    @apply font-serif tracking-tightest text-ink;
+  }
+  .eyebrow {
+    @apply text-[11px] uppercase tracking-[0.22em] font-medium text-ink-muted;
+  }
+  .panel {
+    @apply bg-white/70 backdrop-blur-sm border border-line rounded-2xl shadow-soft;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-medium tracking-wide;
+  }
+  .btn-ghost {
+    @apply text-ink-soft hover:text-ink hover:bg-chalk transition-colors rounded-lg px-3 py-1.5 text-sm;
+  }
+  .btn-primary {
+    @apply bg-sage-500 text-white rounded-lg px-3.5 py-2 text-sm font-medium hover:bg-sage-600 transition-colors;
+  }
+  .btn-terra {
+    @apply bg-terra-400 text-white rounded-lg px-3.5 py-2 text-sm font-medium hover:bg-terra-500 transition-colors;
+  }
+  .input-clean {
+    @apply bg-white border border-line rounded-lg px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:outline-none focus:border-sage-400 focus:ring-2 focus:ring-sage-200/60 transition;
+  }
+  .row-hover {
+    @apply hover:bg-chalk/60 transition-colors;
+  }
+}
