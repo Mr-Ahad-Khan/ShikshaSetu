@@ -15,7 +15,8 @@ const allowedOrigins = (process.env.CLIENT_ORIGIN || "http://localhost:5173")
 app.use(
   cors({
     origin(origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+      if (!origin || allowedOrigins.includes(origin))
+        return callback(null, true);
       return callback(new Error("Origin is not allowed by CORS"));
     },
   }),
@@ -34,7 +35,7 @@ const startServer = async () => {
   try {
     await initialize();
 
-    app.listen(PORT, () => {
+    app.listen(PORT, "0.0.0.0", () => {
       console.log(`Server is running on port ${PORT}`);
     });
   } catch (error) {
