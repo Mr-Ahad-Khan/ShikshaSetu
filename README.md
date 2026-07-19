@@ -76,9 +76,9 @@ npm run dev
 
 Open the local URL printed by Vite—normally `http://localhost:5173`.
 
-### 2. Start the API (optional for the current prototype)
+### 2. Start the API
 
-The dashboard currently renders its product experience from local mock data. The API can still be run independently for its existing product-management endpoints.
+The dashboard renders its academic data from local mock data, but authentication is stored in MongoDB. Copy the environment example and provide a MongoDB connection string and a long `AUTH_SECRET`.
 
 ```bash
 cd Backend
@@ -96,8 +96,10 @@ Create `Backend/.env` from [`Backend/.env.example`](Backend/.env.example):
 
 ```env
 PORT=8000
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/nexusforge
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/shikshasetu
 CLIENT_ORIGIN=http://localhost:5173
+AUTH_SECRET=replace-with-a-long-random-secret
+ADMIN_SETUP_KEY=optional-key-for-creating-more-admins
 ```
 
 For a deployed frontend, set this build-time variable:
@@ -108,7 +110,18 @@ VITE_API_URL=https://your-api-domain.example/api
 
 When `VITE_API_URL` is not set, the Vite development server proxies `/api` requests to port `8000`.
 
-## API service
+## Authentication and API service
+
+The first administrator can be created from the Admin tab in the login page. After that, creating another administrator requires `ADMIN_SETUP_KEY`. Regular users can create their own account from the User tab. Passwords are salted and hashed before they are stored in MongoDB; browser sessions expire after 12 hours.
+
+| Method | Route                       | Purpose                                             |
+| ------ | --------------------------- | --------------------------------------------------- |
+| `POST` | `/api/auth/register`        | Create a regular user account                       |
+| `POST` | `/api/auth/login`           | Sign in as `user` or `admin`                        |
+| `POST` | `/api/auth/bootstrap-admin` | Create the first admin (or another using setup key) |
+| `GET`  | `/api/auth/me`              | Return the signed-in account                        |
+
+Product management endpoints require a valid admin session (`Authorization: Bearer <token>`).
 
 The active Express service exposes a health endpoint and product CRUD routes:
 
@@ -122,6 +135,19 @@ The active Express service exposes a health endpoint and product CRUD routes:
 | `DELETE` | `/api/products/:id` | Delete a product.                 |
 
 The repository also contains models, controllers, and route modules for administrators, customers, orders, and payments. They are not currently mounted by `Server.js`; the documented live API surface above reflects the service as it runs today.
+
+## Admin Login
+
+Use the following credentials to log in as an administrator:
+
+| Field         | Value          |
+| ------------- | -------------- |
+| **Name**      | Name           |
+| **Email**     | name@gmail.com |
+| **Password**  | `#admin123`    |
+| **Admin Key** | `@admin123`    |
+
+> **Note:** These credentials are intended for development/testing only.
 
 ## Where the project can grow
 

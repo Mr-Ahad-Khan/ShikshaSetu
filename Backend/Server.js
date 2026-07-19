@@ -3,6 +3,8 @@ const cors = require("cors");
 require("dotenv").config();
 const { initialize } = require("./Config/db");
 const productRoutes = require("./Routes/ProductRoutes");
+const authRoutes = require("./Routes/authRoutes");
+const { requireAuth, requireAdmin } = require("./Middleware/auth");
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -29,7 +31,8 @@ app.get("/", (req, res) => {
 
 app.get("/health", (_req, res) => res.status(200).json({ status: "ok" }));
 
-app.use("/api/products", productRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/products", requireAuth, requireAdmin, productRoutes);
 
 const startServer = async () => {
   try {
