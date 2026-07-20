@@ -9,7 +9,7 @@ const { requireAuth, requireAdmin } = require("./Middleware/auth");
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-const allowedOrigins = (process.env.CLIENT_ORIGIN || "http://localhost:5173")
+const allowedOrigins = "https://shiksha-setu-eta.vercel.app/"
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
