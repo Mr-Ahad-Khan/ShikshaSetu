@@ -9,20 +9,7 @@ const { requireAuth, requireAdmin } = require("./Middleware/auth");
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-const allowedOrigins = "https://shiksha-setu-eta.vercel.app/"
-  .split(",")
-  .map((origin) => origin.trim())
-  .filter(Boolean);
-
-app.use(
-  cors({
-    origin(origin, callback) {
-      if (!origin || allowedOrigins.includes(origin))
-        return callback(null, true);
-      return callback(new Error("Origin is not allowed by CORS"));
-    },
-  }),
-);
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
