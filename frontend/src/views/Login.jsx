@@ -75,6 +75,37 @@ export default function Login({ onAuthenticated }) {
     }
   };
 
+  const signInAsDemoAdmin = async () => {
+    const demoCredentials = {
+      email: "name@gmail.com",
+      password: "#admin123",
+      role: "admin",
+    };
+
+    setMode("admin-login");
+    setForm({ ...initialForm, ...demoCredentials });
+    setLoading(true);
+    setMessage("");
+
+    try {
+      const response = await fetch(`${API_URL}/api/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(demoCredentials),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Unable to sign in");
+
+      const session = { token: data.token, account: data.account };
+      localStorage.setItem("shikshasetu_session", JSON.stringify(session));
+      onAuthenticated(session);
+    } catch (error) {
+      setMessage(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <main className="min-h-screen bg-canvas text-ink grid lg:grid-cols-2">
       <section className="hidden lg:flex flex-col justify-between bg-ink text-canvas p-12 xl:p-16">
@@ -222,6 +253,23 @@ export default function Login({ onAuthenticated }) {
             >
               {loading ? "Please wait…" : signup ? "Create account" : "Sign in"}
             </button>
+            {!signup && (
+              <>
+                <button
+                  type="button"
+                  onClick={signInAsDemoAdmin}
+                  disabled={loading}
+                  className="w-full rounded-lg border-2 border-amber-400 bg-amber-50 py-2.5 text-sm font-semibold text-sage-800 shadow-sm ring-4 ring-amber-100 transition hover:bg-amber-100 hover:shadow disabled:opacity-60"
+                >
+                  <span aria-hidden="true" className="mr-2">&#10024;</span>
+                  Demo Admin
+                </button>
+                <p className="mt-3 rounded-md bg-amber-100 px-3 py-2 text-center text-xs font-semibold text-amber-900">
+                  <span aria-hidden="true" className="mr-1">&#8593;</span>
+                  Click on Demo Admin to see all features
+                </p>
+              </>
+            )}
           </form>
 
           <div className="text-center text-sm text-ink-muted mt-5">
