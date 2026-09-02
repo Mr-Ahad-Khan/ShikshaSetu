@@ -156,5 +156,3 @@ The next meaningful step is to connect the student-success views to an education
 ---
 
 ShikshaSetu means _a bridge to education_. This project explores what that bridge can look like when data supports mentorship, not just measurement.
-
-check
