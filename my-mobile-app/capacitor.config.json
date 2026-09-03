@@ -3,7 +3,7 @@
   "appName": "ShikshaSetu",
   "webDir": "www",
   "server": {
-    "url": "http://172.24.233.191:5173",
-    "cleartext": true
+    "url": "https://shiksha-setu-eta.vercel.app",
+    "androidScheme": "https"
   }
 }
