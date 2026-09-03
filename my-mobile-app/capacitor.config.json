@@ -1,0 +1,9 @@
+{
+  "appId": "com.yourcompany.shikshasetu",
+  "appName": "ShikshaSetu",
+  "webDir": "www",
+  "server": {
+    "url": "http://172.24.233.191:5173",
+    "cleartext": true
+  }
+}
