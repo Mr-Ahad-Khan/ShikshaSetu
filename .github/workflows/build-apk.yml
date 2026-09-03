@@ -26,33 +26,45 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
 
       - name: Build web app
-        run: npm run build
+        run: |
+          cd frontend
+          npm run build
 
-      - name: Install Capacitor
-        run: npm install @capacitor/core @capacitor/cli @capacitor/android
+      - name: Install Capacitor dependencies
+        run: |
+          cd my-mobile-app
+          npm install
+          npm install @capacitor/core @capacitor/cli @capacitor/android
 
       - name: Sync Capacitor
-        run: npx cap sync android
+        run: |
+          cd my-mobile-app
+          npx cap sync android
 
       - name: Grant execute permission
-        run: chmod +x android/gradlew
+        run: chmod +x my-mobile-app/android/gradlew
 
       - name: Build Debug APK
-        run: cd android && ./gradlew assembleDebug
+        run: |
+          cd my-mobile-app/android
+          ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: app-debug
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          path: my-mobile-app/android/app/build/outputs/apk/debug/app-debug.apk
 
       - name: Create Release (on tags)
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         with:
-          files: android/app/build/outputs/apk/debug/app-debug.apk
+          files: my-mobile-app/android/app/build/outputs/apk/debug/app-debug.apk
