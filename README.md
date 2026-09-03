@@ -29,6 +29,27 @@ Most academic dashboards report a number. ShikshaSetu is shaped around the conve
 
 All names, courses, dates, and metrics displayed in the dashboard are fictional demonstration data. The attendance geo/IP flags are simulations intended to show a review workflow; they do not perform real location verification.
 
+## Mobile feature
+
+ShikshaSetu is also available as an Android app through Capacitor. It provides a native Android container for the deployed, responsive web dashboard, giving mentors direct access to the same workspace on phones and tablets.
+
+- **Android wrapper** — `my-mobile-app` contains the Capacitor project and native Android source.
+- **Live dashboard** — the app loads `https://shiksha-setu-eta.vercel.app`, so it requires an internet connection.
+- **Same capabilities** — login, attendance, marks, schedules, and student views are shared with the responsive web frontend.
+- **APK automation** — `.github/workflows/build-apk.yml` builds a debug APK on pushes to `main` or `master` (and on manual runs). Tags beginning with `v` additionally publish that APK in a GitHub release.
+
+To build a debug APK locally, install Android Studio with a compatible Android SDK, then run:
+
+```bash
+cd my-mobile-app
+npm install
+npx cap sync android
+cd android
+./gradlew assembleDebug
+```
+
+The APK is created at `my-mobile-app/android/app/build/outputs/apk/debug/app-debug.apk`.
+
 ## Technology
 
 | Layer              | Stack                                        |
@@ -40,20 +61,37 @@ All names, courses, dates, and metrics displayed in the dashboard are fictional 
 
 ## Project structure
 
+The repository is organised into web, API, mobile, and automation projects:
+
 ```text
 ShikshaSetu/
-├── frontend/                 # Primary student-success dashboard
-│   └── src/
-│       ├── views/            # Hub, attendance, marks, schedule, students, staff
-│       ├── components/       # Responsive navigation and UI primitives
-│       ├── data/mockData.js  # Fictional prototype data and learning signals
-│       └── lib/api.js        # Frontend API base URL configuration
-└── Backend/                  # Express + MongoDB service
-    ├── Config/               # Database connection setup
-    ├── Controllers/
-    ├── Models/
-    ├── Routes/
-    └── Server.js
+├── frontend/                         # Primary React/Vite student-success dashboard
+│   ├── public/                       # Public icons and branding assets
+│   ├── src/
+│   │   ├── assets/                   # Frontend assets
+│   │   ├── components/               # Sidebar, UI primitives, and shared UI
+│   │   ├── data/mockData.js          # Fictional prototype data and learning signals
+│   │   ├── lib/api.js                # Frontend API base-URL configuration
+│   │   ├── views/                    # Hub, attendance, marks, schedule, students, staff, login
+│   │   ├── App.jsx                   # Application shell and view routing
+│   │   └── main.jsx                  # React entry point
+│   ├── vite.config.js                # Vite configuration and development proxy
+│   └── vercel.json                   # Vercel deployment configuration
+├── Backend/                          # Express + MongoDB API service
+│   ├── Config/                       # Database connection setup
+│   ├── Controllers/                  # Request handlers
+│   ├── Middleware/                   # Authentication middleware
+│   ├── Models/                       # Mongoose data models
+│   ├── Routes/                       # API route modules
+│   └── Server.js                     # API server entry point
+├── my-mobile-app/                    # Capacitor mobile application
+│   ├── android/                      # Native Android project and Gradle configuration
+│   ├── www/                          # Capacitor web directory placeholder
+│   ├── capacitor.config.json         # App identity and deployed dashboard URL
+│   └── package.json                  # Capacitor dependencies
+├── .github/workflows/
+│   └── build-apk.yml                 # Automated Android APK build and release workflow
+└── README.md
 ```
 
 `Backend/Adminpanel` is a legacy application. It is retained in the repository but is not the primary dashboard and should not be deployed.
