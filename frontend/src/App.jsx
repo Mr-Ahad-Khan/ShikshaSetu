@@ -33,11 +33,11 @@ export default function App() {
   const View = TABS[tab]
 
   return (
-    <div className="min-h-screen bg-canvas text-ink flex">
+    <div className="min-h-screen min-w-0 max-w-full bg-canvas text-ink flex overflow-x-hidden">
       <Sidebar active={tab} onChange={(id) => dispatch(id)} account={session.account} onLogout={logout} />
-      <div className="flex-1 min-w-0 flex flex-col">
+      <div className="flex-1 min-w-0 max-w-full flex flex-col">
         <MobileNav active={tab} onChange={(id) => dispatch(id)} account={session.account} onLogout={logout} />
-        <main className="flex-1 px-5 md:px-10 lg:px-14 py-8 md:py-12 max-w-[1400px] w-full mx-auto">
+        <main className="flex-1 min-w-0 px-5 md:px-10 lg:px-14 py-8 md:py-12 max-w-[1400px] w-full mx-auto">
           <View />
         </main>
         <footer className="px-6 md:px-10 lg:px-14 py-6 border-t border-line text-[11px] text-ink-muted flex flex-col md:flex-row md:items-center md:justify-between gap-2">

@@ -10,6 +10,11 @@
 
 html, body, #root {
   height: 100%;
+  max-width: 100%;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 body {
@@ -20,6 +25,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "ss01", "cv11";
+  overscroll-behavior-x: none;
+}
+
+#root {
+  min-width: 0;
+  overflow-x: clip;
 }
 
 * {
@@ -75,4 +86,10 @@ body {
   .row-hover {
     @apply hover:bg-chalk/60 transition-colors;
   }
+}
+
+.overflow-x-auto {
+  max-width: 100%;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
 }

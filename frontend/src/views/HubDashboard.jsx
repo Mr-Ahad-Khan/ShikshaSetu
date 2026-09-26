@@ -12,7 +12,7 @@ function VelocityChart() {
   const max = 1
   return (
     <Panel className="p-6">
-      <div className="flex items-start justify-between mb-5">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-5 min-w-0">
         <div>
           <Eyebrow>Module 01 · Momentum</Eyebrow>
           <h2 className="editorial-title text-2xl mt-1">Student Velocity Chart</h2>
@@ -30,7 +30,7 @@ function VelocityChart() {
         {sorted.map((s, i) => {
           const accel = s.trend[s.trend.length - 1] >= s.trend[0]
           return (
-            <div key={s.id} className="group grid grid-cols-12 items-center gap-3 py-1.5 border-b border-line/60 last:border-0">
+            <div key={s.id} className="group grid grid-cols-12 items-center gap-2 sm:gap-3 py-1.5 border-b border-line/60 last:border-0 min-w-0">
               <div className="col-span-1 font-mono text-[11px] text-ink-faint">{String(i + 1).padStart(2, '0')}</div>
               <div className="col-span-4 md:col-span-3 min-w-0">
                 <div className="text-sm font-medium text-ink truncate">{s.name}</div>
@@ -75,7 +75,7 @@ function RiskHeatmap() {
 
   return (
     <Panel className="p-6">
-      <div className="flex items-start justify-between mb-5">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-5 min-w-0">
         <div>
           <Eyebrow>Module 01 · Retention</Eyebrow>
           <h2 className="editorial-title text-2xl mt-1">Risk & Retention Heatmap</h2>
@@ -83,7 +83,7 @@ function RiskHeatmap() {
             A typographic flagging grid. Each cell encodes a 14-day engagement decay signal — softly flagged, not alarmed.
           </p>
         </div>
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-1.5 shrink-0">
           {['all', ...RISK_ORDER].map((f) => (
             <button
               key={f}
@@ -164,7 +164,7 @@ function SynergyMatcher() {
 
   return (
     <Panel className="p-6">
-      <div className="flex items-start justify-between mb-5">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-5 min-w-0">
         <div>
           <Eyebrow>Module 01 · Synergy</Eyebrow>
           <h2 className="editorial-title text-2xl mt-1">Synergy Matcher</h2>
@@ -231,7 +231,7 @@ export default function HubDashboard() {
             A composite glance at {students.length} scholars in {faculty.cohort.toLowerCase()}. Momentum, risk, and synergy — read together, not apart.
           </p>
         </div>
-        <div className="grid grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-3 gap-3 sm:gap-6 md:gap-8 min-w-0">
           <Stat label="Cohort Velocity" value={avgVelocity.toFixed(2)} sub="composite momentum" tone="sage" />
           <Stat label="At-Risk Flags" value={String(atRisk).padStart(2, '0')} sub="elevated + critical" tone="terra" />
           <Stat label="Attendance" value={`${(avgAttendance * 100).toFixed(0)}%`} sub="14-day rolling" />

@@ -22,7 +22,7 @@ function toMinutes(t) {
 function WeeklyGrid() {
   return (
     <Panel className="p-6">
-      <div className="flex items-start justify-between mb-5">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-5 min-w-0">
         <div>
           <Eyebrow>Module 04 · Grid</Eyebrow>
           <h2 className="editorial-title text-2xl mt-1">Weekly Grid Layout</h2>
@@ -37,7 +37,7 @@ function WeeklyGrid() {
         </div>
       </div>
 
-      <div className="overflow-x-auto -mx-2">
+      <div className="overflow-x-auto max-w-full -mx-2">
         <div className="min-w-[860px] px-2">
           <div className="grid grid-cols-[60px_repeat(5,1fr)] gap-0 border border-line rounded-xl overflow-hidden">
             <div className="bg-chalk/50 border-r border-line" />
@@ -106,7 +106,7 @@ function BurnoutPredictor() {
 
   return (
     <Panel className="p-6">
-      <div className="flex items-start justify-between mb-5">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-5 min-w-0">
         <div>
           <Eyebrow>Module 04 · Burnout</Eyebrow>
           <h2 className="editorial-title text-2xl mt-1">Burnout Predictor</h2>
@@ -212,7 +212,7 @@ function OfficeHoursMatrix() {
 
   return (
     <Panel className="p-6">
-      <div className="flex items-start justify-between mb-5">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-5 min-w-0">
         <div>
           <Eyebrow>Module 04 · Office Hours</Eyebrow>
           <h2 className="editorial-title text-2xl mt-1">Office Hours Rescheduling Matrix</h2>
@@ -288,7 +288,8 @@ function OfficeHoursMatrix() {
           </Field>
         </div>
 
-        <div className="grid grid-cols-[60px_repeat(5,1fr)] gap-1 text-xs">
+        <div className="overflow-x-auto max-w-full -mx-1">
+        <div className="grid grid-cols-[60px_repeat(5,1fr)] gap-1 text-xs min-w-[640px] px-1">
           <div />
           {DAYS.map((d) => <div key={d} className="eyebrow text-center">{d}</div>)}
           {[9, 10, 11, 12, 13, 14, 15, 16].map((h) => (
@@ -318,6 +319,7 @@ function OfficeHoursMatrix() {
             </div>
           ))}
         </div>
+        </div>
 
         <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-ink-muted">
           <Chip tone="sage"><Dot tone="sage" /> Open</Chip>
@@ -344,7 +346,7 @@ export default function Schedule() {
             Weekly grid, burnout signal, and rescheduling matrix — designed so no scholar meets themselves coming and going.
           </p>
         </div>
-        <div className="grid grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-3 gap-3 sm:gap-6 md:gap-8 min-w-0">
           <Stat label="Weekly Hours" value={totalHours.toFixed(1)} sub="faculty load" tone="sage" />
           <Stat label="Mentor Sessions" value={String(mentorCount).padStart(2, '0')} sub="1:1 slots" />
           <Stat label="Lab Blocks" value={String(labCount).padStart(2, '0')} sub="supervised" tone="terra" />

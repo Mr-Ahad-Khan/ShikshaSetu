@@ -20,5 +20,21 @@ export default function Sidebar({ active, onChange, account, onLogout }) {
 }
 
 export function MobileNav({ active, onChange, account, onLogout }) {
-  return <div className="lg:hidden sticky top-0 z-30 bg-canvas/90 backdrop-blur border-b border-line"><div className="flex items-center justify-between px-4 py-3"><div className="flex items-center gap-2"><div className="w-6 h-6 rounded-md bg-sage-500 grid place-items-center"><span className="font-serif text-canvas text-xs">S</span></div><span className="font-serif text-base tracking-tightest">ShikshaSetu</span></div><label className="flex flex-col gap-0.5 text-right"><span className="text-[9px] uppercase tracking-[0.14em] text-sage-700 font-semibold">Go to page</span><select value={active} onChange={(e) => onChange(e.target.value)} className="input-clean text-sm border-2 border-sage-300 bg-sage-50 font-medium text-ink focus:border-sage-600" aria-label="Go to page">{getVisibleNav(account).map((n) => <option key={n.id} value={n.id}>{n.glyph} — {n.label}</option>)}</select></label></div><button onClick={onLogout} className="px-4 pb-2 text-xs text-ink-muted">Sign out</button></div>
+  return (
+    <div className="lg:hidden sticky top-0 z-30 bg-canvas/90 backdrop-blur border-b border-line overflow-x-hidden">
+      <div className="flex items-center justify-between gap-3 px-4 py-3 min-w-0">
+        <div className="flex items-center gap-2 shrink-0">
+          <div className="w-6 h-6 rounded-md bg-sage-500 grid place-items-center"><span className="font-serif text-canvas text-xs">S</span></div>
+          <span className="font-serif text-base tracking-tightest">ShikshaSetu</span>
+        </div>
+        <label className="flex flex-col gap-0.5 text-right min-w-0 flex-1 max-w-[11.5rem] sm:max-w-[16rem]">
+          <span className="text-[9px] uppercase tracking-[0.14em] text-sage-700 font-semibold">Go to page</span>
+          <select value={active} onChange={(e) => onChange(e.target.value)} className="input-clean w-full min-w-0 max-w-full text-sm border-2 border-sage-300 bg-sage-50 font-medium text-ink focus:border-sage-600" aria-label="Go to page">
+            {getVisibleNav(account).map((n) => <option key={n.id} value={n.id}>{n.glyph} — {n.label}</option>)}
+          </select>
+        </label>
+      </div>
+      <button onClick={onLogout} className="px-4 pb-2 text-xs text-ink-muted">Sign out</button>
+    </div>
+  )
 }

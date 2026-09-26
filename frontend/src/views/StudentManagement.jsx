@@ -51,7 +51,7 @@ export default function StudentManagement() {
           <div><h2 className="editorial-title text-2xl">Student records</h2><p className="text-sm text-ink-muted mt-1">{students.length} active records</p></div>
           <input className="input-clean w-full md:w-64" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search student or programme" />
         </div>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto max-w-full">
           <table className="w-full text-sm min-w-[680px]">
             <thead><tr className="border-b border-line text-left text-[11px] uppercase tracking-[0.14em] text-ink-muted"><th className="py-3 pr-4">Student</th><th className="py-3 pr-4">Programme</th><th className="py-3 pr-4">Year</th><th className="py-3 pr-4">GPA</th><th className="py-3 text-right">Actions</th></tr></thead>
             <tbody>{visible.map((student) => <tr key={student.id} className="border-b border-line/60 row-hover"><td className="py-3 pr-4"><div className="font-medium text-ink">{student.name}</div><div className="font-mono text-[10px] text-ink-faint">{student.id.toUpperCase()}</div></td><td className="py-3 pr-4 text-ink-soft">{student.program}</td><td className="py-3 pr-4">{student.year}</td><td className="py-3 pr-4 font-mono">{student.gpa}</td><td className="py-3 text-right whitespace-nowrap"><button onClick={() => setEditing(student)} className="btn-ghost text-xs">Edit</button><button onClick={() => removeStudent(student)} className="btn-ghost text-xs text-terra-600">Delete</button></td></tr>)}</tbody>

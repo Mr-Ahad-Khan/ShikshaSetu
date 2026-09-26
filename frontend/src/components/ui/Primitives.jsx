@@ -19,10 +19,10 @@ export function Stat({ label, value, sub, tone = 'ink' }) {
     terra: 'text-terra-500',
   }[tone]
   return (
-    <div className="flex flex-col gap-1">
-      <span className="eyebrow">{label}</span>
-      <span className={`font-serif text-3xl tracking-tightest ${toneClass}`}>{value}</span>
-      {sub && <span className="text-xs text-ink-muted">{sub}</span>}
+    <div className="flex flex-col gap-1 min-w-0">
+      <span className="eyebrow leading-tight break-words">{label}</span>
+      <span className={`font-serif text-2xl sm:text-3xl tracking-tightest ${toneClass}`}>{value}</span>
+      {sub && <span className="text-xs text-ink-muted break-words">{sub}</span>}
     </div>
   )
 }
@@ -90,7 +90,7 @@ export function Donut({ value, size = 96, stroke = 10, color = '#4A6B5D', track 
 
 export function Drawer({ open, onClose, title, subtitle, children, footer }) {
   return (
-    <div className={`fixed inset-0 z-40 ${open ? '' : 'pointer-events-none'}`}>
+    <div className={`fixed inset-0 z-40 overflow-hidden ${open ? '' : 'pointer-events-none'}`}>
       <div
         className={`absolute inset-0 bg-ink/20 backdrop-blur-[2px] transition-opacity duration-300 ${open ? 'opacity-100' : 'opacity-0'}`}
         onClick={onClose}
@@ -115,9 +115,9 @@ export function Drawer({ open, onClose, title, subtitle, children, footer }) {
 
 export function Modal({ open, onClose, title, subtitle, children, footer, wide = false }) {
   return (
-    <div className={`fixed inset-0 z-50 ${open ? '' : 'pointer-events-none'}`}>
+    <div className={`fixed inset-0 z-50 overflow-hidden ${open ? '' : 'pointer-events-none'}`}>
       <div className={`absolute inset-0 bg-ink/25 backdrop-blur-[2px] transition-opacity duration-200 ${open ? 'opacity-100' : 'opacity-0'}`} onClick={onClose} />
-      <div className={`absolute inset-0 flex items-center justify-center p-6`}>
+      <div className={`absolute inset-0 flex items-center justify-center p-4 sm:p-6`}>
         <div
           className={`relative bg-canvas border border-line rounded-2xl shadow-2xl w-full ${wide ? 'max-w-3xl' : 'max-w-lg'} transition-all duration-300 ${open ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
         >
@@ -129,7 +129,7 @@ export function Modal({ open, onClose, title, subtitle, children, footer, wide =
             </div>
             <button onClick={onClose} className="btn-ghost">Close</button>
           </header>
-          <div className="px-6 py-5 max-h-[70vh] overflow-y-auto">{children}</div>
+          <div className="px-6 py-5 max-h-[70vh] overflow-y-auto overflow-x-auto min-w-0">{children}</div>
           {footer && <footer className="px-6 py-4 border-t border-line bg-chalk/40 rounded-b-2xl">{footer}</footer>}
         </div>
       </div>

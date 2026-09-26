@@ -81,7 +81,7 @@ function WeightedGradebook({ gradebook, setGradebook, weights, dispatchWeights }
             Spreadsheet-style ledger with adjustable category weights. Click any cell to edit; weighted total recomputes live.
           </p>
         </div>
-        <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Filter by scholar or course…" className="input-clean w-64" />
+        <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Filter by scholar or course…" className="input-clean w-full max-w-full md:w-64" />
       </div>
 
       <div className="rounded-xl border border-line p-4 mb-5 bg-chalk/40">
@@ -108,7 +108,7 @@ function WeightedGradebook({ gradebook, setGradebook, weights, dispatchWeights }
         </div>
       </div>
 
-      <div className="overflow-x-auto -mx-2">
+      <div className="overflow-x-auto max-w-full -mx-2">
         <table className="w-full text-sm min-w-[820px]">
           <thead>
             <tr className="text-left text-[11px] uppercase tracking-[0.16em] text-ink-muted border-b border-line">
@@ -205,7 +205,7 @@ function TrendVisualizer() {
         </select>
       </div>
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto max-w-full">
         <svg viewBox={`0 0 ${w} ${h}`} className="w-full min-w-[640px]">
           {[0, 0.25, 0.5, 0.75, 1].map((g) => (
             <g key={g}>
@@ -271,7 +271,7 @@ function RedirectionEngine({ gradebook, weights }) {
 
   return (
     <Panel className="p-6">
-      <div className="flex items-start justify-between mb-5">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-5 min-w-0">
         <div>
           <Eyebrow>Module 03 · Redirection</Eyebrow>
           <h2 className="editorial-title text-2xl mt-1">Redirection Engine</h2>
@@ -359,7 +359,7 @@ export default function Marks() {
             Weighted ledger, trendline, and redirection — three instruments for moving a scholar from a number to a pathway.
           </p>
         </div>
-        <div className="grid grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-3 gap-3 sm:gap-6 md:gap-8 min-w-0">
           <Stat label="Cohort Avg" value={avgWeighted.toFixed(1)} sub="weighted" tone="sage" />
           <Stat label="Below C-" value={String(belowC).padStart(2, '0')} sub="weighted < 70" tone="terra" />
           <Stat label="Recovery Slots" value={String(recoveryPathways.length).padStart(2, '0')} sub="pathways" />

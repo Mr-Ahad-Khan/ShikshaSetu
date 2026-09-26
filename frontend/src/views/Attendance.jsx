@@ -62,7 +62,7 @@ function RosterTable({ overrides, dispatch }) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search scholar or program…"
-            className="input-clean w-56"
+            className="input-clean w-full max-w-full sm:w-56"
           />
           <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="input-clean">
             <option value="all">All statuses</option>
@@ -86,7 +86,7 @@ function RosterTable({ overrides, dispatch }) {
         ))}
       </div>
 
-      <div className="overflow-x-auto -mx-2">
+      <div className="overflow-x-auto max-w-full -mx-2">
         <table className="w-full text-sm min-w-[640px]">
           <thead>
             <tr className="text-left text-[11px] uppercase tracking-[0.16em] text-ink-muted border-b border-line">
@@ -160,7 +160,7 @@ function DecayAlerts({ onCheckIn }) {
 
       <ul className="divide-y divide-line/60">
         {decay.map((s) => (
-          <li key={s.id} className="py-3 flex items-center justify-between gap-4">
+          <li key={s.id} className="py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div className="flex items-center gap-3 min-w-0">
               <div className="w-9 h-9 rounded-full bg-terra-50 text-terra-600 grid place-items-center font-serif text-sm">
                 {s.name.split(' ').map((w) => w[0]).join('')}
@@ -269,7 +269,7 @@ export default function Attendance() {
             Roster, decay, and integrity — three lenses on the same daily ritual of showing up.
           </p>
         </div>
-        <div className="grid grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-3 gap-3 sm:gap-6 md:gap-8 min-w-0">
           <Stat label="Avg Attendance" value={`${(avgAttendance * 100).toFixed(0)}%`} sub="rolling 14d" tone="sage" />
           <Stat label="Decay Flagged" value={String(flagged).padStart(2, '0')} sub="< 85%" tone="terra" />
           <Stat label="Proxy Signals" value={String(geoFlagLog.length).padStart(2, '0')} sub="last 72h" />

@@ -107,7 +107,7 @@ export default function Login({ onAuthenticated }) {
   };
 
   return (
-    <main className="min-h-screen bg-canvas text-ink grid lg:grid-cols-2">
+    <main className="min-h-screen min-w-0 max-w-full overflow-x-hidden bg-canvas text-ink grid lg:grid-cols-2">
       <section className="hidden lg:flex flex-col justify-between bg-ink text-canvas p-12 xl:p-16">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-lg bg-sage-500 grid place-items-center font-serif text-xl">
