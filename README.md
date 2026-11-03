@@ -183,7 +183,7 @@ Use the following credentials to log in as an administrator:
 | **Name**      | Name           |
 | **Email**     | name@gmail.com |
 | **Password**  | `#admin123`    |
-| **Admin Key** | `@admin123`    |
+| **Admin Key** | `dev`    |
 
 > **Note:** These credentials are intended for development/testing only.
 
